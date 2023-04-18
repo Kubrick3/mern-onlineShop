@@ -15,6 +15,13 @@ main {
   flex: 1;
 }
 
+.btn-primary {
+  background: rgb(34,129,195);
+  background: linear-gradient(90deg, rgba(34,129,195,1) 0%, rgba(45,252,253,1) 100%);
+  color: #000;
+  border: none;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -27,11 +34,18 @@ main {
   
 }
 
+.rating span {
+  color: #ffc000;
+}
+
 .product img{
   width : 150px;
-  height : auto;
+  height : 350px;
   padding: 1rem;
   text-align: center;
+}
+.img-preview{
+  max-width: 400px;
 }
 
 .product-info{

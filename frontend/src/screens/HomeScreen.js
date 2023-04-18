@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Product from "../components/Product";
+import { Helmet } from "react-helmet-async";
 // import DATA from "../data";
 
 const reducer = (state, action) => {
@@ -41,6 +44,9 @@ function HomeScreen() {
 
   return (
     <div>
+    <Helmet>
+      <title>GadgetBridge</title>
+    </Helmet>
       <h1>Feature Products</h1>
       <div className="products">
         {loading ? (
@@ -48,22 +54,13 @@ function HomeScreen() {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          products.map((item) => (
-            <div className="product" key={item.slug}>
-              <Link to={`/product/${item.slug}`}>
-                <img src={item.image} alt={item.name} />
-              </Link>
-              <div className="product-info">
-                <Link to={`/product/${item.slug}`}>
-                  <p>{item.name}</p>
-                </Link>
-                <p>
-                  <strong>Rp.{item.price}</strong>
-                </p>
-                <button>Add to cart</button>
-              </div>
-            </div>
-          ))
+          <Row>
+          {products.map((item) => (
+            <Col key={item.slug} sm={6} md={4} lg={3} className="mb-3">
+              <Product item={item}></Product>
+            </Col>
+          ))}
+          </Row>
         )}
       </div>
     </div>
