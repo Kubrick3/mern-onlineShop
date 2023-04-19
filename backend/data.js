@@ -1,6 +1,23 @@
+import bcrypt from 'bcryptjs'
+
 const DATA = {
+    users:[
+        {
+            name: 'Miqdad',
+            email: 'admin@admin.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin :true,
+        },
+        {
+            name: 'Andy',
+            email: 'andy@user.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: false,
+        },
+    ],
     products: [
         {
+            //_id: '1',
             name : 'Iphone 14',
             slug : 'iphone-14',
             category: 'Phone',
@@ -19,6 +36,7 @@ const DATA = {
             },
         },
         {
+            //_id: '2',
             name : 'Samsung Galaxy S22 5G',
             slug : 'samsung-galaxy-s22-5g',
             category: 'Phone',
@@ -37,6 +55,7 @@ const DATA = {
             },
         },
         {
+            //_id: '3',
             name : 'Xiaomi Poco F4',
             slug : 'xiaomi-poco-f4',
             category: 'Phone',
@@ -55,6 +74,7 @@ const DATA = {
             },
         },
         {
+           //_id: '4',
             name : 'Samsung Galaxy Tab S6',
             slug : 'samsung-galaxy-tab-s6',
             category: 'Tablet',
@@ -73,6 +93,7 @@ const DATA = {
             },
         },
         {
+            //_id: '5',
             name : 'Apple iPad 10.2 9th Gen',
             slug : 'apple-ipad-10.2-9th-gen',
             category: 'Tablet',

@@ -51,3 +51,11 @@ main {
 .product-info{
   padding: 1rem;
 }
+
+.img-thumbnail{
+  height: 55px;
+}
+
+.small-container{
+  max-width: 600px;
+}

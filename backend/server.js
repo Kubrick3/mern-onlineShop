@@ -1,23 +1,32 @@
 import express from 'express';
 import DATA from './data.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import seedRouter from './routes/seedRoutes.js';
+import productRouter from './routes/productRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
+dotenv.config();
+
+mongoose.connect("mongodb://127.0.0.1:27017/gadgetbridge", {useNewUrlParser: true}).then(() => {
+    console.log('connected to db')
+}).catch(err => {
+    console.log(err.message)
+})
 
 const app = express();
 
-app.get('/api/products', (req, res) => {
-    res.send(DATA.products)
-});
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get('/api/products/slug/:slug', (req, res) => {
-    const product = DATA.products.find( x => x.slug === req.params.slug);
-    if(product){
-        res.send(product);
-    }
-    else{
-        res.status(404).send({message: "Product Not Found"});
-    }
-    res.send(DATA.products)
-});
+app.use('/api/seed', seedRouter);
+app.use('/api/products', productRouter);
+app.use('/api/users', userRouter)
+
+
+app.use((err, re, res, next) => {
+    res.status(500).send({message : err.message});
+})
 
 const port = process.env.PORT || 5000;
 
